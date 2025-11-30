@@ -1,15 +1,18 @@
-import LandingPage from "@/components/LandingPage"
-import { currentUser } from "@clerk/nextjs/server"
-import { redirect } from "next/navigation"
+import { SignUp } from "@clerk/nextjs";
+import Image from "next/image";
 
-export default async function HomePage() {
-
-  const user = await currentUser()
-
-  // If no user is logged in, render the public landing page
-  if (!user) return <LandingPage />
-
-  // If user is logged in, redirect them to the events page
-  return redirect('/events')
-  
+export default function RegisterPage() {
+    return (
+        <main className="flex flex-col items-center p-5 gap-10 animate-fade-in">
+             <Image
+                src='/assets/logo.svg'
+                width={100}
+                height={100}
+                alt="Logo"
+            />
+            <div className="mt-3">
+                <SignUp />
+            </div>
+        </main>
+)
 }
